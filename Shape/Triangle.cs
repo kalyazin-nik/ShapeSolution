@@ -1,26 +1,17 @@
 ﻿namespace Shape;
 
-public class Triangle : IShape
+public class Triangle(double sideA, double sideB, double sideC) : IShape
 {
-    public readonly double SideA;
-    public readonly double SideB;
-    public readonly double SideC;
+    public readonly double SideA = sideA;
+    public readonly double SideB = sideB;
+    public readonly double SideC = sideC;
 
-    public double Area { get; }
-    public double Perimeter { get; }
-    public bool IsRightAngle { get; }
+    public double Area { get; } = CalculateArea(sideA, sideB, sideC);
+    public double Perimeter { get; } = GetPerimeter(sideA, sideB, sideC);
+    public bool IsRightAngle { get; } = IsTriangleRectangular(sideA, sideB, sideC);
 
-    public Triangle(double sideA, double sideB, double sideC)
-    {
-        SideA = sideA;
-        SideB = sideB;
-        SideC = sideC;
-
-        var perimeter = (sideA + sideB + sideC) / 2;
-        Area = Math.Sqrt(perimeter * (perimeter - sideA) * (perimeter - sideB) * (perimeter - sideC));
-        Perimeter = perimeter;
-        IsRightAngle = IsTriangleRectangular(sideA, sideB, sideC);
-    }
+    public double CalculateArea()
+        => CalculateArea(SideA, SideB, SideC);
 
     public double GetMaximumLengthSide()
         => GetMaximumLengthSide(SideA, SideB, SideC);
@@ -30,6 +21,17 @@ public class Triangle : IShape
 
     public double GetMinimumLengthSide()
         => GetMinimumLengthSide(SideA, SideB, SideC);
+
+    public static double CalculateArea(double sideA, double sideB, double sideC)
+    {
+        var perimeter = GetPerimeter(sideA, sideB, sideC);
+        return Math.Sqrt(perimeter * (perimeter - sideA) * (perimeter - sideB) * (perimeter - sideC));
+    }
+
+    public static double GetPerimeter(double sideA, double sideB, double sideC)
+    {
+        return (sideA + sideB + sideC) / 2;
+    }
 
     public static bool IsTriangleRectangular(double sideA, double sideB, double sideC)
     {
