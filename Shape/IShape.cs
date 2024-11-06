@@ -1,8 +1,13 @@
-﻿namespace Shape
+﻿namespace Shape;
+
+/// <summary>
+/// Интерфейс геометрических фигур.
+/// </summary>
+public interface IShape
 {
-    public interface IShape
-    {
-        double Area { get; }
-        double Perimeter { get; }
-    }
+    /// <summary>
+    /// Расчет площади фигуры.
+    /// </summary>
+    /// <returns>Площадь фигуры.</returns>
+    double CalculateArea();
 }
