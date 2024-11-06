@@ -2,20 +2,36 @@
 
 public class Circle(double radius) : IShape
 {
-    private double _area = Math.PI * radius * radius;
-    private double _perimeter = Math.PI * 2 * radius;
-
     public double Radius { get; } = radius;
-    public double Area => _area;
-    public double Perimeter => _perimeter;
+    public double Area { get; } = CalculateArea(radius);
+    public double Circumference { get; } = GetCircumference(radius);
+
+    public double CalculateArea()
+        => CalculateArea(Radius);
 
     public double GetSectorArea(double radiansAngle)
-    {
-        return Radius * Radius * (radiansAngle / 2);
-    }
+        => GetSectorArea(Radius, radiansAngle);
     
     public double GetSectorArea(float degreesAngle)
+        => GetSectorArea(Radius, degreesAngle);
+
+    public static double GetSectorArea(double radius, double radiansAngle)
     {
-        return _area * degreesAngle / 360;
+        return radius * radius * (radiansAngle / 2);
+    }
+    
+    public static double GetSectorArea(double radius, float degreesAngle)
+    {
+        return GetCircumference(radius) * degreesAngle / 360;
+    }
+
+    public static double CalculateArea(double radius)
+    {
+        return Math.PI * radius * radius;
+    }
+
+    public static double GetCircumference(double radius)
+    {
+        return Math.PI * 2 * radius;
     }
 }
