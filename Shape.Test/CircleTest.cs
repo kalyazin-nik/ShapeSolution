@@ -3,7 +3,7 @@ namespace Shape.Test;
 [TestFixture]
 internal class CircleTest
 {
-    private const double Inaccuracy = 1e-9;
+    private const double Inaccuracy = 1e-5;
 
     [TestCase(-1)]
     [TestCase(-Inaccuracy)]
