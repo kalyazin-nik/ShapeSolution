@@ -1,4 +1,4 @@
-﻿namespace Shape;
+﻿namespace Shape.Interfaces;
 
 /// <summary>
 /// Интерфейс геометрических фигур.
@@ -6,8 +6,8 @@
 public interface IShape
 {
     /// <summary>
-    /// Расчет площади фигуры.
+    /// Расчет площади.
     /// </summary>
-    /// <returns>Площадь фигуры.</returns>
+    /// <returns>Площадь.</returns>
     double CalculateArea();
 }
