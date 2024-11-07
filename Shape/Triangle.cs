@@ -24,13 +24,13 @@ public class Triangle(double sideA, double sideB, double sideC) : IShape
 
     public static double CalculateArea(double sideA, double sideB, double sideC)
     {
-        var perimeter = GetPerimeter(sideA, sideB, sideC);
-        return Math.Sqrt(perimeter * (perimeter - sideA) * (perimeter - sideB) * (perimeter - sideC));
+        var halfPerimeter = GetPerimeter(sideA, sideB, sideC) / 2;
+        return Math.Sqrt(halfPerimeter * (halfPerimeter - sideA) * (halfPerimeter - sideB) * (halfPerimeter - sideC));
     }
 
     public static double GetPerimeter(double sideA, double sideB, double sideC)
     {
-        return (sideA + sideB + sideC) / 2;
+        return sideA + sideB + sideC;
     }
 
     public static bool IsTriangleRectangular(double sideA, double sideB, double sideC)
@@ -39,7 +39,7 @@ public class Triangle(double sideA, double sideB, double sideC) : IShape
         var legA = GetMediumLengthSide(sideA, sideB, sideC);
         var legB = GetMinimumLengthSide(sideA, sideB, sideC);
 
-        return Math.Abs((hypotenuse * hypotenuse) - Math.Sqrt(legA * legA + legB * legB)) <= 1e-9;
+        return Math.Abs((hypotenuse * hypotenuse) - (legA * legA + legB * legB)) <= 1e-5;
     }
 
     public static double GetMaximumLengthSide(double sideA, double sideB, double sideC)
